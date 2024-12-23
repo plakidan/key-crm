@@ -37,11 +37,17 @@ require_once('/path/to/plakidan/key-crm/vendor/autoload.php');
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$client = new \GuzzleHttp\Client([
+        'base_uri' => 'https://openapi.keycrm.app/v1',
+        'headers' => [
+            'Authorization' => 'Bearer '.YOUR_API_KEY_HERE, // Ваш токен
+        ],
+    ]);
 
 $apiInstance = new OpenAPI\Client\Api\BuyerApi(
     // Якщо ви хочете використовувати власний HTTP-клієнт, передайте свій клієнт, який реалізує `GuzzleHttp\ClientInterface`.
     // Це необов'язково, за замовчуванням буде використано `GuzzleHttp\Client`.
-    new GuzzleHttp\Client()
+    $client
 );
 $update_existing_buyer_request = new \OpenAPI\Client\Model\UpdateExistingBuyerRequest(); // \OpenAPI\Client\Model\UpdateExistingBuyerRequest | Приклад об'єкту запиту для створення нового покупця
 $accept = 'application/json'; // string | application/json
